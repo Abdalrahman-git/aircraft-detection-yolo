@@ -8,7 +8,6 @@ version = "1.0.0"
 description = "From-scratch YOLO-style aircraft detection on NWPU VHR-10, benchmarked against fine-tuned YOLOv9"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
 authors = [{ name = "Abdalrahman Mohamed" }]
 keywords = ["object-detection", "yolo", "yolov9", "remote-sensing", "pytorch", "nwpu-vhr-10"]
 classifiers = [
@@ -16,7 +15,6 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "License :: OSI Approved :: MIT License",
     "Topic :: Scientific/Engineering :: Image Recognition",
 ]
 dependencies = [

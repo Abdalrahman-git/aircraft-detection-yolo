@@ -120,7 +120,3 @@ cite:
 
 Architectural ideas (CSP, SPPF, SiLU, focal loss on background) follow the
 YOLOv5 line of work; the implementation here is independent.
-
-## Licence
-
-MIT — see [LICENSE](LICENSE). Covers the code only, not the dataset.
