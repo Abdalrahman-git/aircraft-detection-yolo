@@ -1,0 +1,22 @@
+{
+  "best_val_ap50": 0.8930224675756668,
+  "minutes": 23.91,
+  "test": {
+    "precision": 0.15725806451612903,
+    "recall": 0.975,
+    "f1": 0.2708333333333333,
+    "ap50": 0.8754861585109444,
+    "ap50_95": 0.35456961879102533,
+    "true_positives": 117,
+    "false_positives": 627,
+    "false_negatives": 3,
+    "num_ground_truth": 120,
+    "conf_threshold": 0.35
+  },
+  "splits": {
+    "train": 62,
+    "val": 14,
+    "test": 14
+  },
+  "parameters": 1128933
+}
