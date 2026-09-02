@@ -44,8 +44,7 @@ multi-scale anchor-based head. Most of the rest is the pretrained backbone — o
 side.
 
 *The test split is 14 images. These numbers are real on it, but too small a
-sample to read as a general claim.* Raw output:
-[`docs/results/`](docs/results/).
+sample to read as a general claim.*
 
 ---
 
@@ -93,13 +92,11 @@ it describes.
 notebooks/aircraft_detection.ipynb   the project end to end, with outputs
 src/aircraft_detector/               the implementation the notebook imports
 tests/                               95 tests, no network or dataset needed
-docs/                                figures and raw results
 ```
 
-The notebook is the narrative; the package is the implementation. It imports
-rather than restates, so there is one version of every function and it is the
-one the tests cover. `python notebooks/build_notebook.py` regenerates it, and CI
-fails if the committed notebook has drifted from that script.
+The notebook is the narrative; the package is the implementation. The notebook
+imports rather than restates it, so there is one version of every function and
+it is the one the 95 tests cover.
 
 ## Dataset
 

@@ -46,9 +46,6 @@ aircraft-yolov9-train = "aircraft_detector.yolov9.train:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
-[tool.setuptools.package-data]
-aircraft_detector = ["py.typed"]
-
 [tool.ruff]
 line-length = 100
 target-version = "py310"
@@ -60,11 +57,6 @@ extend-exclude = ["notebooks/*.ipynb"]
 # Selected explicitly rather than relying on the default set, which changes
 # between ruff releases and would break CI on an unrelated upgrade.
 select = ["E", "W", "F", "I", "UP", "B", "SIM", "C4", "RUF"]
-
-[tool.ruff.lint.per-file-ignores]
-# This file embeds the notebook's source and prose as string literals, so its
-# own line lengths and typographic characters are not meaningful style signals.
-"notebooks/build_notebook.py" = ["E501", "RUF001"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
