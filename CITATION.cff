@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: Aircraft Detection in Satellite Imagery
+message: >-
+  If you use this software, please cite it using these metadata. The NWPU VHR-10
+  dataset has its own citation requirements; see README.md.
+type: software
+authors:
+  - family-names: Mohamed
+    given-names: Abdalrahman
+    alias: Abdalrahman-git
+repository-code: https://github.com/Abdalrahman-git/aircraft-detection-yolo
+abstract: >-
+  A single-class aircraft detector for very-high-resolution remote sensing
+  imagery, built two ways and compared on equal terms: a YOLO-style detector
+  written from scratch in PyTorch (CSP backbone, SPPF neck, focal and CIoU loss,
+  NMS and average precision all implemented directly), and a fine-tuned
+  YOLOv9-S. Both are scored by the same metric code on the same seeded split of
+  the aircraft class of NWPU VHR-10.
+keywords:
+  - object detection
+  - remote sensing
+  - satellite imagery
+  - YOLO
+  - YOLOv9
+  - PyTorch
+  - NWPU VHR-10
+license: MIT
+version: 1.0.0
