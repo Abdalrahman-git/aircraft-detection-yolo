@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aircraft-detector"
+version = "1.0.0"
+description = "From-scratch YOLO-style aircraft detection on NWPU VHR-10, benchmarked against fine-tuned YOLOv9"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Abdalrahman Mohamed" }]
+keywords = ["object-detection", "yolo", "yolov9", "remote-sensing", "pytorch", "nwpu-vhr-10"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+dependencies = [
+    "torch>=2.0",
+    "numpy>=1.24",
+    "Pillow>=9.5",
+    "PyYAML>=6.0",
+    "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "ruff>=0.4"]
+# The YOLOv9 comparison track. Kept optional so the from-scratch model
+# stays installable with torch + numpy + Pillow alone.
+yolov9 = ["ultralytics>=8.3"]
+
+[project.urls]
+Repository = "https://github.com/Abdalrahman-git/aircraft-detection-yolo"
+
+[project.scripts]
+aircraft-prepare = "aircraft_detector.data.prepare:main"
+aircraft-train = "aircraft_detector.train:main"
+aircraft-evaluate = "aircraft_detector.evaluate:main"
+aircraft-predict = "aircraft_detector.predict:main"
+aircraft-benchmark = "aircraft_detector.benchmark:main"
+aircraft-yolov9-export = "aircraft_detector.yolov9.export:main"
+aircraft-yolov9-train = "aircraft_detector.yolov9.train:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+# Selected explicitly rather than relying on the default set, which changes
+# between ruff releases and would break CI on an unrelated upgrade.
+select = ["E", "W", "F", "I", "UP", "B", "SIM", "C4", "RUF"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

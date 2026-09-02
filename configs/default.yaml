@@ -1,0 +1,36 @@
+# Default training configuration.
+# Override any field on the CLI, e.g.  --epochs 50 --batch-size 8
+
+# --- data ---
+dataset_dir: data/aircraft
+image_size: 640      # must be a multiple of the model stride (32)
+grid_size: 20        # 640 / 32
+
+# --- splits ---
+val_fraction: 0.15
+test_fraction: 0.15
+seed: 42
+
+# --- training ---
+epochs: 200
+batch_size: 4
+lr: 0.0001
+weight_decay: 0.0001
+warmup_epochs: 5
+grad_clip: 10.0
+num_workers: 0       # raise to 4 on Linux/Colab; keep 0 on Windows
+eval_every: 10
+
+# --- loss weights ---
+box_weight: 5.0
+obj_weight: 5.0
+noobj_weight: 0.5
+focal_gamma: 2.0
+focal_alpha: 0.25
+
+# --- inference ---
+conf_threshold: 0.35
+nms_iou_threshold: 0.45
+
+# --- io ---
+output_dir: runs/train

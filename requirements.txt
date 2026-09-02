@@ -1,0 +1,11 @@
+# Runtime dependencies.
+# For GPU builds of PyTorch, install torch first from https://pytorch.org.
+torch>=2.0
+numpy>=1.24
+Pillow>=9.5
+PyYAML>=6.0
+matplotlib>=3.7
+
+# Development only (see `pip install -e ".[dev]"`)
+# pytest>=7.4
+# ruff>=0.4
