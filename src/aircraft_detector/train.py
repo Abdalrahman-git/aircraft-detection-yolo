@@ -79,12 +79,6 @@ def train(cfg: Config) -> dict:
     print(f"Split sizes: {sizes}")
 
     model = YOLOTiny().to(device)
-    expected_grid = YOLOTiny.grid_size(cfg.image_size)
-    if expected_grid != cfg.grid_size:
-        raise ValueError(
-            f"config.grid_size={cfg.grid_size} but a {cfg.image_size}px input "
-            f"yields a {expected_grid}x{expected_grid} grid"
-        )
     n_params = sum(p.numel() for p in model.parameters())
     print(f"Model parameters: {n_params:,}")
 
@@ -144,8 +138,9 @@ def train(cfg: Config) -> dict:
                         "epoch": epoch + 1,
                         "metrics": metrics,
                         "config": {
-                            k: str(v) if isinstance(v, Path) else v
-                            for k, v in asdict(cfg).items()
+                            **{k: str(v) if isinstance(v, Path) else v
+                               for k, v in asdict(cfg).items()},
+                            "grid_size": cfg.grid_size,   # derived, so not in asdict
                         },
                     },
                     best_path,
@@ -184,7 +179,6 @@ def main() -> None:
         "batch_size",
         "lr",
         "image_size",
-        "grid_size",
         "num_workers",
         "eval_every",
         "seed",

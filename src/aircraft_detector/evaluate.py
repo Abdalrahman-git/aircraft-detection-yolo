@@ -13,6 +13,7 @@ from pathlib import Path
 
 import torch
 
+from .benchmark import THRESHOLD_GRID
 from .config import Config, add_config_arguments
 from .metrics import collect_detections, evaluate_map, format_metrics, score_detections
 from .models import YOLOTiny
@@ -77,7 +78,7 @@ def main() -> None:
 
     if args.sweep:
         rows = sweep_confidence(
-            model, loader, device, [i / 20 for i in range(1, 20)], cfg.nms_iou_threshold
+            model, loader, device, THRESHOLD_GRID, cfg.nms_iou_threshold
         )
         best = max(rows, key=lambda r: r["f1"])
         print("\nconf   precision  recall     f1")

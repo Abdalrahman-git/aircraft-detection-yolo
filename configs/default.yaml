@@ -3,8 +3,7 @@
 
 # --- data ---
 dataset_dir: data/aircraft
-image_size: 640      # must be a multiple of the model stride (32)
-grid_size: 20        # 640 / 32
+image_size: 640      # must be a multiple of the model stride (32); the grid is derived
 
 # --- splits ---
 val_fraction: 0.15

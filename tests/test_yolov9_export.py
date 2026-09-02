@@ -45,7 +45,6 @@ class TestExport(unittest.TestCase):
             test_fraction=0.15,
             seed=42,
             image_size=640,
-            grid_size=20,
         )
 
     def tearDown(self):

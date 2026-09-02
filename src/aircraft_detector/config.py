@@ -9,13 +9,14 @@ from typing import Any
 
 import yaml
 
+from .models.yolo_tiny import STRIDE
+
 
 @dataclass
 class Config:
     # --- data ---
     dataset_dir: Path = Path("data/aircraft")
     image_size: int = 640
-    grid_size: int = 20  # 640 / 32; must match the model stride (see models.yolo_tiny)
 
     # --- splits ---
     val_fraction: float = 0.15
@@ -51,17 +52,31 @@ class Config:
     def __post_init__(self) -> None:
         for name in self._PATH_FIELDS:
             setattr(self, name, Path(getattr(self, name)))
-        if self.image_size % self.grid_size != 0:
+        if self.image_size % STRIDE != 0:
             raise ValueError(
-                f"image_size ({self.image_size}) must be divisible by "
-                f"grid_size ({self.grid_size})"
+                f"image_size ({self.image_size}) must be a multiple of the model "
+                f"stride ({STRIDE})"
             )
         if not 0.0 <= self.val_fraction + self.test_fraction < 1.0:
             raise ValueError("val_fraction + test_fraction must be in [0, 1)")
 
+    @property
+    def grid_size(self) -> int:
+        """Prediction grid edge, fixed by the architecture rather than configured.
+
+        It was previously a settable field, which meant a config could declare a
+        grid that the model does not produce - and only `train` checked. Deriving
+        it makes that state unrepresentable.
+        """
+        return self.image_size // STRIDE
+
     @classmethod
     def from_yaml(cls, path: str | Path) -> Config:
         data = yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
+        # `grid_size` used to be a settable field and still appears in configs
+        # written by earlier runs. It is derived now, so drop it rather than
+        # rejecting an otherwise valid file.
+        data.pop("grid_size", None)
         known = {f.name for f in fields(cls)}
         unknown = set(data) - known
         if unknown:
