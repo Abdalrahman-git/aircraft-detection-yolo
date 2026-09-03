@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Project artifacts.
+# Anchored with a leading slash: a bare `data/` also matches
+# src/aircraft_detector/data/, which would silently exclude the package's own
+# data module from the repository.
+/data/
+/runs/
+*.pt
+*.pth
+nohup.out
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
